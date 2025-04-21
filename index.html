@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hi Crush</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-image: url('https://static.vecteezy.com/system/resources/previews/015/937/778/non_2x/sealed-love-letter-white-envelope-with-heart-stamp-on-transparent-background-vector.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #e91e63;
+    }
+
+    .yesBtn {
+      position: absolute;
+      padding: 15px 30px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #noBtn {
+      padding: 15px 30px;
+      font-size: 16px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #ff4081;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="centerContainer">
+    <h1>Hi Crush! Do you like me?</h1>
+    <button class="yesBtn" id="yesBtn" style="position:static;">Yes</button><br>
+    <button id="noBtn">No</button>
+    <div id="message">I like you too 💖</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const message = document.getElementById('message');
+    const centerContainer = document.getElementById('centerContainer');
+
+    let yesSize = 16;
+
+    function showLoveMessage() {
+      message.style.display = 'block';
+      const allYes = document.querySelectorAll('.yesBtn');
+      allYes.forEach(btn => btn.remove());
+      noBtn.style.display = 'none';
+    }
+
+    function createRandomYesButton(size) {
+      const yesBtn = document.createElement('button');
+      yesBtn.textContent = 'Yes';
+      yesBtn.className = 'yesBtn';
+      yesBtn.style.fontSize = size + 'px';
+      yesBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+      yesBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+      yesBtn.addEventListener('click', showLoveMessage);
+      document.body.appendChild(yesBtn);
+    }
+
+    document.getElementById('yesBtn').addEventListener('click', showLoveMessage);
+
+    noBtn.addEventListener('click', () => {
+      yesSize += 10;
+      createRandomYesButton(yesSize);
+    });
+  </script>
+</body>
+</html>
